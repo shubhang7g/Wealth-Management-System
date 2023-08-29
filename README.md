@@ -1,18 +1,15 @@
-# Salesforce DX Project: Next Steps
+**Steps to run the code:-**
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+1. Deploy the "Document__c" custom object, 'SendEmailBatch', 'SendEmailBatchTest', 'SendEmailBatchScheduler' from the repository to the Salesforce org.
+2. Navigate to Developer Console in your Salesforce instance and click the Debug Menu. From there you will click the Open Execute Anonymous option and execute the below lines to run the batch immediately:<br/>
+`SendEmailBatch sendEmail = new SendEmailBatch();` <br/>
+`Database.executeBatch(sendEmail);`
+4. For Scheduling batch class thrice a day run the below lines:<br/>
+`String cronExpression = '0 0 9,17,1 * * ?’; // Starting from 9 AM, 5 PM and 1 AM`<br/>
+`SendEmailBatchScheduler sendEmailBatchScheduler = new SendEmailBatchScheduler();`<br/>
+`System.schedule('Send Email Batch Job', cronExpression, sendEmailBatchScheduler);`
 
-## How Do You Plan to Deploy Your Changes?
+Thank you!
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
 
-## Configure Your Salesforce DX Project
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
-
-## Read All About It
-
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
